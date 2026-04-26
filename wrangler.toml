@@ -9,6 +9,9 @@ compatibility_date = "2025-04-01"
 directory      = "./public"
 not_found_handling = "404-page"   # serves public/404.html if you create one
 
-# Uncomment to set environment variables if needed later
+routes = [
+  { pattern = "resume.loicj.org", custom_domain = true }
+]
+
 # [vars]
 # MY_VAR = "value"
