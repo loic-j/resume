@@ -1,0 +1,14 @@
+# wrangler.toml — Cloudflare Workers static site config
+# Docs: https://developers.cloudflare.com/workers/configuration/
+
+name            = "my-cv"
+compatibility_date = "2025-04-01"
+
+# Serve all static files from the ./public directory
+[assets]
+directory      = "./public"
+not_found_handling = "404-page"   # serves public/404.html if you create one
+
+# Uncomment to set environment variables if needed later
+# [vars]
+# MY_VAR = "value"

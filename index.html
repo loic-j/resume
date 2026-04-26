@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Loic [LastName] — Senior Backend Developer & Engineering Manager</title>
+  <meta name="description" content="Senior Backend Developer with 18+ years of experience. Engineering Manager. Distributed systems, architecture, team leadership.">
+  <link rel="canonical" href="https://[your-domain.com]">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Loic [LastName] — Senior Backend Developer">
+  <meta property="og:description" content="18+ years of backend development. 2 years engineering management.">
+  <meta property="og:url" content="https://[your-domain.com]">
+  <meta property="og:image" content="https://[your-domain.com]/photo.jpg">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Loic [LastName]",
+    "jobTitle": "Senior Backend Developer & Engineering Manager",
+    "description": "Senior Backend Developer with 18+ years of experience",
+    "url": "https://[your-domain.com]",
+    "sameAs": [
+      "https://linkedin.com/in/[profile]",
+      "https://github.com/[username]"
+    ]
+  }
+  </script>
+
+  <!-- Fonts: Playfair Display (display) + JetBrains Mono (tech) + Outfit (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── VARIABLES & THEMES ──────────────────────────── */
+    :root {
+      --bg:         #0C0E13;
+      --surface:    #141720;
+      --surface-2:  #1C2030;
+      --border:     #252A3A;
+      --text:       #E8EAF0;
+      --text-muted: #8892A4;
+      --accent:     #5B8DEF;
+      --accent-bg:  rgba(91,141,239,.12);
+      --accent-2:   #2DD4BF;
+      --sidebar-w:  270px;
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Outfit', sans-serif;
+      --ff-mono:    'JetBrains Mono', monospace;
+      --radius:     12px;
+      --transition: .25s ease;
+    }
+    [data-theme="light"] {
+      --bg:         #F2F4FB;
+      --surface:    #FFFFFF;
+      --surface-2:  #E8EBF5;
+      --border:     #D4D9EE;
+      --text:       #1A1F2E;
+      --text-muted: #5A6480;
+      --accent:     #2D5FD4;
+      --accent-bg:  rgba(45,95,212,.08);
+      --accent-2:   #0D9B8A;
+    }
+
+    /* ─── RESET & BASE ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      line-height: 1.65;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .75; }
+
+    /* ─── SCROLLBAR ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    /* ─── SIDEBAR ─────────────────────────────────────── */
+    .sidebar {
+      position: fixed; top: 0; left: 0;
+      width: var(--sidebar-w); height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 2.25rem 1.75rem;
+      overflow-y: auto; z-index: 100;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    /* ─── PROFILE ─────────────────────────────────────── */
+    .profile {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .avatar {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      border: 2.5px solid var(--accent);
+      overflow: hidden;
+      margin-bottom: .9rem;
+      background: var(--surface-2);
+      flex-shrink: 0;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .avatar-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 2.25rem; color: var(--text-muted);
+    }
+    .profile-name {
+      font-family: var(--ff-display);
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--text); letter-spacing: -.02em; line-height: 1.2;
+    }
+    .profile-title-text {
+      font-family: var(--ff-mono);
+      font-size: .68rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-top: .35rem; line-height: 1.4;
+    }
+
+    /* ─── CONTROLS ────────────────────────────────────── */
+    .controls {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem; gap: .5rem;
+    }
+    .lang-switcher {
+      display: flex;
+      background: var(--surface-2);
+      border-radius: 8px; padding: 3px; gap: 2px;
+    }
+    .lang-btn {
+      padding: .22rem .5rem;
+      border: none; background: transparent;
+      color: var(--text-muted);
+      font-family: var(--ff-mono);
+      font-size: .68rem; font-weight: 500;
+      border-radius: 6px; cursor: pointer;
+      transition: all .2s;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    .lang-btn:hover:not(.active) { color: var(--text); background: var(--border); }
+
+    .theme-btn {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .theme-btn:hover { color: var(--text); border-color: var(--accent); }
+    .theme-btn svg { width: 15px; height: 15px; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    .sidebar-nav {
+      display: flex; flex-direction: column;
+      gap: .2rem; margin-bottom: auto;
+    }
+    .nav-btn {
+      display: flex; align-items: center;
+      gap: .7rem; padding: .5rem .7rem;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: .83rem; font-weight: 500;
+      cursor: pointer; border: none;
+      background: transparent; text-align: left;
+      width: 100%; transition: all .2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0; opacity: .5;
+      transition: opacity .2s;
+    }
+    .nav-btn.active .nav-dot { opacity: 1; }
+
+    /* ─── CONTACT LINKS ───────────────────────────────── */
+    .contact-links {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: .55rem;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: .55rem;
+      color: var(--text-muted);
+      font-size: .73rem; font-family: var(--ff-mono);
+      transition: color .2s; word-break: break-all;
+    }
+    .contact-link:hover { color: var(--accent); opacity: 1; }
+    .contact-link svg {
+      width: 13px; height: 13px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round;
+      stroke-linejoin: round; flex-shrink: 0;
+    }
+
+    /* ─── MAIN ────────────────────────────────────────── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 3rem 3.5rem 5rem;
+      max-width: calc(var(--sidebar-w) + 780px);
+    }
+
+    /* ─── SECTION ─────────────────────────────────────── */
+    .section { margin-bottom: 4.5rem; scroll-margin-top: 2rem; }
+
+    .section-header {
+      display: flex; align-items: center;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .section-num {
+      font-family: var(--ff-mono);
+      font-size: .62rem; text-transform: uppercase;
+      letter-spacing: .18em; color: var(--accent);
+      white-space: nowrap;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: 1.7rem; font-weight: 600;
+      color: var(--text); letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about-text {
+      color: var(--text-muted);
+      font-size: .975rem; line-height: 1.85;
+      margin-bottom: 1.75rem; max-width: 640px;
+    }
+    .stat-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .stat-card {
+      flex: 1; min-width: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-lbl {
+      font-family: var(--ff-mono);
+      font-size: .7rem; color: var(--text-muted);
+      margin-top: .3rem; text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ─── TIMELINE ────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 10px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent) 0%, transparent 90%);
+    }
+    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem; top: 8px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+    }
+    .tl-role { font-weight: 600; font-size: 1rem; color: var(--text); }
+    .tl-company { color: var(--accent); font-size: .88rem; font-weight: 500; margin-top: .12rem; }
+    .tl-meta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: .35rem; margin-bottom: .75rem;
+    }
+    .tl-date, .tl-loc {
+      font-family: var(--ff-mono);
+      font-size: .67rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .tl-desc { color: var(--text-muted); font-size: .875rem; line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .65rem; }
+    .tag {
+      font-family: var(--ff-mono);
+      font-size: .62rem; padding: .18rem .55rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+
+    /* ─── SKILLS ──────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-cat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.25rem;
+    }
+    .skill-cat-name {
+      font-family: var(--ff-mono);
+      font-size: .63rem; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--accent-2);
+      margin-bottom: .75rem;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .chip {
+      font-size: .78rem; padding: .25rem .6rem;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* ─── MANAGEMENT ──────────────────────────────────── */
+    .mgmt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .mgmt-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      transition: border-color var(--transition);
+    }
+    .mgmt-card:hover { border-color: var(--accent); }
+    .mgmt-icon { font-size: 1.4rem; margin-bottom: .65rem; }
+    .mgmt-title { font-weight: 600; font-size: .95rem; color: var(--text); margin-bottom: .4rem; }
+    .mgmt-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ─── PROJECTS ────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .proj-name {
+      font-weight: 600; font-size: .98rem;
+      color: var(--text); display: flex;
+      align-items: center; gap: .4rem;
+      margin-bottom: .5rem;
+    }
+    .proj-ext { font-size: .75rem; color: var(--text-muted); }
+    .proj-desc { font-size: .84rem; color: var(--text-muted); line-height: 1.65; margin-bottom: .85rem; }
+
+    /* ─── EDUCATION ───────────────────────────────────── */
+    .edu-list { display: flex; flex-direction: column; gap: .85rem; }
+    .edu-item {
+      display: flex; gap: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.5rem;
+      align-items: flex-start;
+    }
+    .edu-year {
+      font-family: var(--ff-mono);
+      font-size: .67rem; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .08em;
+      white-space: nowrap; margin-top: .15rem; min-width: 60px;
+    }
+    .edu-degree { font-weight: 600; font-size: .93rem; color: var(--text); }
+    .edu-school { font-size: .83rem; color: var(--text-muted); margin-top: .2rem; }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section {
+      opacity: 0;
+      animation: fadeUp .5s ease forwards;
+    }
+    .section:nth-child(1) { animation-delay: .05s; }
+    .section:nth-child(2) { animation-delay: .12s; }
+    .section:nth-child(3) { animation-delay: .19s; }
+    .section:nth-child(4) { animation-delay: .26s; }
+    .section:nth-child(5) { animation-delay: .33s; }
+    .section:nth-child(6) { animation-delay: .4s; }
+
+    /* ─── PRINT ───────────────────────────────────────── */
+    @media print {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 1.5cm; max-width: 100%; }
+      .section { page-break-inside: avoid; margin-bottom: 2rem; }
+      body { background: white; color: black; font-size: 11pt; }
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .stat-card, .skill-cat, .mgmt-card, .proj-card, .edu-item {
+        border: 1px solid #ccc !important;
+        background: white !important;
+      }
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .main { padding: 2rem 2rem 5rem; }
+    }
+    @media (max-width: 720px) {
+      :root { --sidebar-w: 0px; }
+      .sidebar {
+        position: fixed; bottom: 0; top: auto; left: 0;
+        width: 100%; height: auto;
+        flex-direction: row; align-items: center;
+        justify-content: space-between;
+        padding: .75rem 1.25rem;
+        border-right: none; border-top: 1px solid var(--border);
+        overflow: visible;
+      }
+      .profile, .sidebar-nav, .contact-links { display: none; }
+      .controls { margin: 0; }
+      .main { margin-left: 0; padding: 1.5rem 1.25rem 5rem; }
+      .section-title { font-size: 1.4rem; }
+      .skills-grid, .mgmt-grid, .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+<aside class="sidebar">
+
+  <div class="profile">
+    <div class="avatar">
+      <!-- ▸ Replace with: <img src="photo.jpg" alt="Loic [LastName]"> -->
+      <div class="avatar-placeholder">L</div>
+    </div>
+    <div class="profile-name">Loic [LastName]</div>
+    <div class="profile-title-text" data-i18n="profile_title">Sr. Backend Engineer &amp; Manager</div>
+  </div>
+
+  <div class="controls">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        onclick="setLang('fr')">FR</button>
+      <button class="lang-btn"        onclick="setLang('ja')">JA</button>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme" id="theme-btn">
+      <!-- Moon (dark mode icon) -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button class="nav-btn active" onclick="scrollTo('about')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_about">About</span>
+    </button>
+    <button class="nav-btn" onclick="scrollTo('experience')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_experience">Experience</span>
+    </button>
+    <button class="nav-btn" onclick="scrollTo('skills')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_skills">Skills</span>
+    </button>
+    <button class="nav-btn" onclick="scrollTo('management')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_management">Management</span>
+    </button>
+    <button class="nav-btn" onclick="scrollTo('projects')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_projects">Projects</span>
+    </button>
+    <button class="nav-btn" onclick="scrollTo('education')">
+      <span class="nav-dot"></span>
+      <span data-i18n="nav_education">Education</span>
+    </button>
+  </nav>
+
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:[your@email.com]">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      [your@email.com]
+    </a>
+    <a class="contact-link" href="https://github.com/[username]" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+      github/[username]
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/[profile]" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin/[profile]
+    </a>
+  </div>
+
+</aside>
+
+<!-- ═══════════════════ MAIN ═══════════════════════ -->
+<main class="main">
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title" data-i18n="section_about">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="about-text" data-i18n="about_text"></p>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">18<span style="font-size:1.2rem">+</span></div>
+        <div class="stat-lbl" data-i18n="stat_years">Years of experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl" data-i18n="stat_mgmt">Years in management</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title" data-i18n="section_experience">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title" data-i18n="section_skills">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </section>
+
+  <!-- MANAGEMENT -->
+  <section class="section" id="management">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title" data-i18n="section_management">Management</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="mgmt-grid" id="mgmt-grid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title" data-i18n="section_projects">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title" data-i18n="section_education">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-list" id="edu-list"></div>
+  </section>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   TRANSLATIONS
+   ▸ Replace all [brackets] with your real content
+═══════════════════════════════════════════════════ */
+const i18n = {
+
+  en: {
+    profile_title: "Sr. Backend Engineer & Manager",
+    nav_about: "About", nav_experience: "Experience",
+    nav_skills: "Skills", nav_management: "Management",
+    nav_projects: "Projects", nav_education: "Education",
+    section_about: "About", section_experience: "Experience",
+    section_skills: "Technical Skills",
+    section_management: "Leadership & Management",
+    section_projects: "Side Projects", section_education: "Education",
+    about_text: "Senior Backend Developer with 18+ years of experience building scalable, high-performance distributed systems. Over the last 2 years I moved into engineering management, leading cross-functional teams while staying technically hands-on. Passionate about clean architecture, system design, and developer experience.",
+    stat_years: "Years of experience",
+    stat_mgmt: "Years in management",
+
+    experience: [
+      { role: "Engineering Manager", company: "[Company Name]", date: "2023 — Present", loc: "[Location]",
+        desc: "Leading a team of [N] backend engineers. Defined the technical roadmap, established a code review culture and reduced deployment time by 40%. Maintained active technical contributions on critical system components.",
+        tags: ["Team Leadership", "System Design", "Agile", "OKRs", "Hiring"] },
+      { role: "Senior Backend Developer", company: "[Company Name]", date: "2018 — 2023", loc: "[Location]",
+        desc: "Designed and implemented high-throughput APIs handling millions of requests per day. Led migration from monolith to microservices. Mentored junior and mid-level developers.",
+        tags: ["Node.js", "PostgreSQL", "Docker", "Kubernetes", "gRPC", "Redis"] },
+      { role: "Backend Developer", company: "[Company Name]", date: "2012 — 2018", loc: "[Location]",
+        desc: "Built core backend services for a SaaS platform. Improved database query performance by 60% through indexing strategies and query optimization. Designed and implemented a caching layer with Redis.",
+        tags: ["Python", "Django", "MySQL", "Redis", "RabbitMQ", "REST"] },
+      { role: "Junior → Mid Backend Developer", company: "[Company Name]", date: "2006 — 2012", loc: "[Location]",
+        desc: "Started as junior developer, grew to mid-level. Built internal tools, REST APIs, and data pipelines for various client projects across multiple industries.",
+        tags: ["Java", "Spring", "SQL", "REST APIs", "Linux"] }
+    ],
+
+    skills: [
+      { cat: "Languages",       items: ["Python", "Node.js", "Java", "Go", "TypeScript", "Bash"] },
+      { cat: "Databases",       items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch"] },
+      { cat: "Infrastructure",  items: ["Docker", "Kubernetes", "AWS", "GCP", "Terraform", "CI/CD"] },
+      { cat: "Architecture",    items: ["Microservices", "REST", "gRPC", "Message Queues", "Event-driven"] },
+      { cat: "Observability",   items: ["Prometheus", "Grafana", "OpenTelemetry", "ELK Stack"] },
+      { cat: "Methods",         items: ["Agile / Scrum", "TDD", "Code Review", "DDD", "API Design"] }
+    ],
+
+    management: [
+      { icon: "👥", title: "Team Leadership",    desc: "Led cross-functional engineering teams, fostering a culture of ownership, psychological safety, and continuous improvement." },
+      { icon: "🗺️", title: "Technical Roadmap",  desc: "Defined and communicated technical strategy aligned with business goals. Balanced technical debt reduction with feature delivery." },
+      { icon: "🎯", title: "OKR & Delivery",     desc: "Introduced OKR framework at team level. Improved on-time delivery rate through better scoping, estimation, and stakeholder alignment." },
+      { icon: "🌱", title: "Mentoring",           desc: "Mentored junior and mid-level engineers through structured 1:1s, code reviews, and pair programming. Built a strong internal promotion pipeline." }
+    ],
+
+    projects: [
+      { name: "Prono",        desc: "Sports prediction web app. Users predict match scores and compete on leaderboards. Built with React, TypeScript and a Node.js backend.",               tags: ["React", "TypeScript", "Node.js"], url: null },
+      { name: "ScoreGuess",   desc: "Sports score guessing platform with invite links, custom admin roles, and a sophisticated scoring system. Full-stack with Hono + Vite + React.",      tags: ["Hono", "Vite", "React", "TypeScript"], url: null },
+      { name: "[Project]",    desc: "[Description of another project or open source contribution you'd like to highlight here.]",                                                          tags: ["[Tech]", "[Tech]"], url: null }
+    ],
+
+    education: [
+      { year: "[Year]", degree: "[Degree / Diploma]",  school: "[University / School]" },
+      { year: "[Year]", degree: "[Certification]",     school: "[Issuing organization]" }
+    ]
+  },
+
+  /* ─── FRENCH ──────────────────────────────────── */
+  fr: {
+    profile_title: "Dev. Backend Senior & Manager",
+    nav_about: "À propos", nav_experience: "Expériences",
+    nav_skills: "Compétences", nav_management: "Management",
+    nav_projects: "Projets", nav_education: "Formation",
+    section_about: "À propos", section_experience: "Expériences",
+    section_skills: "Compétences techniques",
+    section_management: "Leadership & Management",
+    section_projects: "Projets & Side projects", section_education: "Formation",
+    about_text: "Développeur Backend Senior avec plus de 18 ans d'expérience dans la conception de systèmes distribués scalables et performants. Passé en management d'ingénierie depuis 2 ans, j'encadre des équipes cross-fonctionnelles tout en restant techniquement impliqué. Passionné par l'architecture logicielle, le design système et l'expérience développeur.",
+    stat_years: "Ans d'expérience",
+    stat_mgmt: "Ans en management",
+
+    experience: [
+      { role: "Engineering Manager", company: "[Nom de l'entreprise]", date: "2023 — Présent", loc: "[Lieu]",
+        desc: "Direction d'une équipe de [N] ingénieurs backend. Définition de la roadmap technique, instauration d'une culture de code review, réduction du temps de déploiement de 40%. Maintien d'une contribution technique active sur les composants critiques.",
+        tags: ["Leadership", "Design Système", "Agile", "OKRs", "Recrutement"] },
+      { role: "Développeur Backend Senior", company: "[Nom de l'entreprise]", date: "2018 — 2023", loc: "[Lieu]",
+        desc: "Conception et implémentation d'APIs haute disponibilité traitant plusieurs millions de requêtes par jour. Pilotage de la migration monolithe vers microservices. Mentoring de développeurs juniors et intermédiaires.",
+        tags: ["Node.js", "PostgreSQL", "Docker", "Kubernetes", "gRPC", "Redis"] },
+      { role: "Développeur Backend", company: "[Nom de l'entreprise]", date: "2012 — 2018", loc: "[Lieu]",
+        desc: "Développement des services backend principaux d'une plateforme SaaS. Amélioration des performances base de données de 60% par optimisation de requêtes et d'index. Mise en place d'une couche de cache Redis.",
+        tags: ["Python", "Django", "MySQL", "Redis", "RabbitMQ", "REST"] },
+      { role: "Développeur Backend Junior → Confirmé", company: "[Nom de l'entreprise]", date: "2006 — 2012", loc: "[Lieu]",
+        desc: "Début de carrière en junior, montée en compétences jusqu'au niveau confirmé. Conception d'outils internes, d'APIs REST et de pipelines de données pour de nombreux projets clients.",
+        tags: ["Java", "Spring", "SQL", "APIs REST", "Linux"] }
+    ],
+
+    skills: [
+      { cat: "Langages",        items: ["Python", "Node.js", "Java", "Go", "TypeScript", "Bash"] },
+      { cat: "Bases de données",items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch"] },
+      { cat: "Infrastructure",  items: ["Docker", "Kubernetes", "AWS", "GCP", "Terraform", "CI/CD"] },
+      { cat: "Architecture",    items: ["Microservices", "REST", "gRPC", "Files de messages", "Event-driven"] },
+      { cat: "Observabilité",   items: ["Prometheus", "Grafana", "OpenTelemetry", "ELK Stack"] },
+      { cat: "Méthodes",        items: ["Agile / Scrum", "TDD", "Code Review", "DDD", "Design API"] }
+    ],
+
+    management: [
+      { icon: "👥", title: "Leadership d'équipe",  desc: "Direction d'équipes d'ingénierie cross-fonctionnelles, en favorisant une culture d'ownership, de sécurité psychologique et d'amélioration continue." },
+      { icon: "🗺️", title: "Roadmap technique",   desc: "Définition et communication de la stratégie technique alignée sur les objectifs business. Gestion équilibrée de la dette technique et des livraisons." },
+      { icon: "🎯", title: "OKR & Delivery",       desc: "Introduction du framework OKR au niveau équipe. Amélioration du taux de livraison dans les délais par un meilleur cadrage et une coordination renforcée." },
+      { icon: "🌱", title: "Mentorat",             desc: "Accompagnement des développeurs juniors et intermédiaires via des 1:1 structurés, des code reviews et du pair programming. Construction d'un pipeline de promotion interne solide." }
+    ],
+
+    projects: [
+      { name: "Prono",      desc: "Application web de pronostics sportifs. Les utilisateurs prédisent les scores et s'affrontent sur des classements. React, TypeScript, backend Node.js.",                            tags: ["React", "TypeScript", "Node.js"], url: null },
+      { name: "ScoreGuess", desc: "Plateforme de pronostics de scores avec liens d'invitation, rôles admin personnalisés et système de scoring avancé. Full-stack Hono + Vite + React.",                               tags: ["Hono", "Vite", "React", "TypeScript"], url: null },
+      { name: "[Projet]",   desc: "[Description d'un autre projet personnel ou d'une contribution open source que vous souhaitez mettre en avant ici.]",                                                               tags: ["[Tech]", "[Tech]"], url: null }
+    ],
+
+    education: [
+      { year: "[Année]", degree: "[Diplôme / Formation]", school: "[Université / École]" },
+      { year: "[Année]", degree: "[Certification]",       school: "[Organisme certificateur]" }
+    ]
+  },
+
+  /* ─── JAPANESE ────────────────────────────────── */
+  ja: {
+    profile_title: "シニアバックエンドエンジニア & マネージャー",
+    nav_about: "プロフィール", nav_experience: "職務経歴",
+    nav_skills: "スキル", nav_management: "マネジメント",
+    nav_projects: "プロジェクト", nav_education: "学歴",
+    section_about: "プロフィール", section_experience: "職務経歴",
+    section_skills: "技術スキル",
+    section_management: "リーダーシップ & マネジメント",
+    section_projects: "サイドプロジェクト", section_education: "学歴・資格",
+    about_text: "18年以上のバックエンド開発経験を持ち、スケーラブルで高性能な分散システムの設計・実装を専門とするシニアエンジニアです。過去2年間はエンジニアリングマネージャーとして、技術的な貢献を続けながらクロスファンクショナルなチームをリードしてきました。クリーンアーキテクチャ、システム設計、開発者体験の向上に情熱を持っています。",
+    stat_years: "年の経験",
+    stat_mgmt: "年のマネジメント経験",
+
+    experience: [
+      { role: "エンジニアリングマネージャー", company: "[会社名]", date: "2023年 — 現在", loc: "[勤務地]",
+        desc: "[N]名のバックエンドエンジニアチームをリード。技術ロードマップの策定、コードレビュー文化の導入、デプロイ時間を40%削減。重要なシステムコンポーネントへの技術的貢献も継続。",
+        tags: ["チームリーダー", "システム設計", "アジャイル", "OKR", "採用"] },
+      { role: "シニアバックエンドエンジニア", company: "[会社名]", date: "2018年 — 2023年", loc: "[勤務地]",
+        desc: "1日あたり数百万リクエストを処理する高スループットAPIの設計・実装。モノリスからマイクロサービスへの移行を主導。ジュニア・中級エンジニアのメンタリング。",
+        tags: ["Node.js", "PostgreSQL", "Docker", "Kubernetes", "gRPC", "Redis"] },
+      { role: "バックエンドエンジニア", company: "[会社名]", date: "2012年 — 2018年", loc: "[勤務地]",
+        desc: "SaaSプラットフォームのコアバックエンドサービス開発。インデックス最適化とクエリ改善によりDB性能を60%向上。Redisを活用したキャッシュ層の設計・実装。",
+        tags: ["Python", "Django", "MySQL", "Redis", "RabbitMQ", "REST"] },
+      { role: "ジュニア → 中級バックエンドエンジニア", company: "[会社名]", date: "2006年 — 2012年", loc: "[勤務地]",
+        desc: "ジュニアからスタートし中級レベルまで成長。様々な業界のクライアント向けに社内ツール、REST API、データパイプラインを構築。",
+        tags: ["Java", "Spring", "SQL", "REST API", "Linux"] }
+    ],
+
+    skills: [
+      { cat: "言語",           items: ["Python", "Node.js", "Java", "Go", "TypeScript", "Bash"] },
+      { cat: "データベース",    items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch"] },
+      { cat: "インフラ",        items: ["Docker", "Kubernetes", "AWS", "GCP", "Terraform", "CI/CD"] },
+      { cat: "アーキテクチャ",  items: ["マイクロサービス", "REST", "gRPC", "メッセージキュー", "イベント駆動"] },
+      { cat: "オブザーバビリティ", items: ["Prometheus", "Grafana", "OpenTelemetry", "ELK Stack"] },
+      { cat: "手法",            items: ["アジャイル/スクラム", "TDD", "コードレビュー", "DDD", "API設計"] }
+    ],
+
+    management: [
+      { icon: "👥", title: "チームリーダーシップ",   desc: "クロスファンクショナルなエンジニアリングチームを統括。オーナーシップ文化、心理的安全性、継続的改善の推進。" },
+      { icon: "🗺️", title: "技術ロードマップ",       desc: "ビジネス目標に沿った技術戦略の策定・共有。技術的負債の解消と機能開発のバランスを計画的に管理。" },
+      { icon: "🎯", title: "OKR & デリバリー",       desc: "チームレベルでのOKRフレームワーク導入。スコープ精緻化とステークホルダー連携の強化により期日遵守率を改善。" },
+      { icon: "🌱", title: "メンタリング",            desc: "定期的な1on1、コードレビュー、ペアプログラミングを通じてジュニア・中級エンジニアを育成。社内昇進パイプラインの構築に貢献。" }
+    ],
+
+    projects: [
+      { name: "Prono",      desc: "スポーツ予想Webアプリ。ユーザーが試合スコアを予測しリーダーボードで競い合う。React・TypeScript・Node.jsで構築。",              tags: ["React", "TypeScript", "Node.js"], url: null },
+      { name: "ScoreGuess", desc: "招待リンク・管理者ロール・カスタムスコアリングを備えたスポーツ予想プラットフォーム。Hono + Vite + Reactによるフルスタック実装。",  tags: ["Hono", "Vite", "React", "TypeScript"], url: null },
+      { name: "[プロジェクト名]", desc: "[個人プロジェクトまたはOSSへの貢献の説明をここに入力してください。]",                                                          tags: ["[技術]", "[技術]"], url: null }
+    ],
+
+    education: [
+      { year: "[年]", degree: "[学位 / 資格]",  school: "[大学 / 学校名]" },
+      { year: "[年]", degree: "[資格・認定]",    school: "[発行機関]" }
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+═══════════════════════════════════════════════════ */
+let lang = 'en';
+
+function setLang(l) {
+  lang = l;
+  const d = i18n[l];
+  document.documentElement.lang = l === 'ja' ? 'ja' : l === 'fr' ? 'fr' : 'en';
+
+  // Static text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (d[k] !== undefined) el.textContent = d[k];
+  });
+
+  // Active lang button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === l);
+  });
+
+  // Dynamic sections
+  renderTimeline(d.experience);
+  renderSkills(d.skills);
+  renderMgmt(d.management);
+  renderProjects(d.projects);
+  renderEdu(d.education);
+}
+
+function renderTimeline(data) {
+  document.getElementById('timeline').innerHTML = data.map(x => `
+    <div class="tl-item">
+      <div class="tl-role">${x.role}</div>
+      <div class="tl-company">${x.company}</div>
+      <div class="tl-meta">
+        <span class="tl-date">${x.date}</span>
+        <span class="tl-loc">📍 ${x.loc}</span>
+      </div>
+      <p class="tl-desc">${x.desc}</p>
+      <div class="tags">${x.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderSkills(data) {
+  document.getElementById('skills-grid').innerHTML = data.map(c => `
+    <div class="skill-cat">
+      <div class="skill-cat-name">${c.cat}</div>
+      <div class="skill-chips">${c.items.map(i => `<span class="chip">${i}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderMgmt(data) {
+  document.getElementById('mgmt-grid').innerHTML = data.map(x => `
+    <div class="mgmt-card">
+      <div class="mgmt-icon">${x.icon}</div>
+      <div class="mgmt-title">${x.title}</div>
+      <div class="mgmt-desc">${x.desc}</div>
+    </div>`).join('');
+}
+
+function renderProjects(data) {
+  document.getElementById('projects-grid').innerHTML = data.map(p => `
+    <div class="proj-card">
+      <div class="proj-name">
+        ${p.name}
+        ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener" class="proj-ext">↗</a>` : ''}
+      </div>
+      <p class="proj-desc">${p.desc}</p>
+      <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderEdu(data) {
+  document.getElementById('edu-list').innerHTML = data.map(e => `
+    <div class="edu-item">
+      <div class="edu-year">${e.year}</div>
+      <div>
+        <div class="edu-degree">${e.degree}</div>
+        <div class="edu-school">${e.school}</div>
+      </div>
+    </div>`).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════════════ */
+const MOON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+const SUN  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+function toggleTheme() {
+  const html  = document.documentElement;
+  const next  = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  html.dataset.theme = next;
+  document.getElementById('theme-btn').innerHTML = next === 'dark' ? MOON : SUN;
+  localStorage.setItem('cv-theme', next);
+}
+
+function initTheme() {
+  const saved     = localStorage.getItem('cv-theme');
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const theme     = saved || preferred;
+  document.documentElement.dataset.theme = theme;
+  document.getElementById('theme-btn').innerHTML = theme === 'dark' ? MOON : SUN;
+}
+
+/* ═══════════════════════════════════════════════════
+   ACTIVE NAV ON SCROLL
+═══════════════════════════════════════════════════ */
+const SECTIONS = ['about','experience','skills','management','projects','education'];
+
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function updateNav() {
+  let active = SECTIONS[0];
+  SECTIONS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < window.innerHeight * 0.45) active = id;
+  });
+  document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', SECTIONS[i] === active);
+  });
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+initTheme();
+setLang('en');
+</script>
+</body>
+</html>
