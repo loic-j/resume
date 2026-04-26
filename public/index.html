@@ -492,27 +492,27 @@
   </div>
 
   <nav class="sidebar-nav">
-    <button class="nav-btn active" onclick="scrollTo('about')">
+    <button class="nav-btn active" onclick="scrollToSection('about')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_about">About</span>
     </button>
-    <button class="nav-btn" onclick="scrollTo('experience')">
+    <button class="nav-btn" onclick="scrollToSection('experience')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_experience">Experience</span>
     </button>
-    <button class="nav-btn" onclick="scrollTo('skills')">
+    <button class="nav-btn" onclick="scrollToSection('skills')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_skills">Skills</span>
     </button>
-    <button class="nav-btn" onclick="scrollTo('management')">
+    <button class="nav-btn" onclick="scrollToSection('management')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_management">Management</span>
     </button>
-    <button class="nav-btn" onclick="scrollTo('projects')">
+    <button class="nav-btn" onclick="scrollToSection('projects')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_projects">Projects</span>
     </button>
-    <button class="nav-btn" onclick="scrollTo('education')">
+    <button class="nav-btn" onclick="scrollToSection('education')">
       <span class="nav-dot"></span>
       <span data-i18n="nav_education">Education</span>
     </button>
@@ -898,7 +898,7 @@ function initTheme() {
 ═══════════════════════════════════════════════════ */
 const SECTIONS = ['about','experience','skills','management','projects','education'];
 
-function scrollTo(id) {
+function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -906,7 +906,7 @@ function updateNav() {
   let active = SECTIONS[0];
   SECTIONS.forEach(id => {
     const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top < window.innerHeight * 0.45) active = id;
+    if (el && el.getBoundingClientRect().top < 80) active = id;
   });
   document.querySelectorAll('.nav-btn').forEach((btn, i) => {
     btn.classList.toggle('active', SECTIONS[i] === active);
