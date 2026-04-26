@@ -4,14 +4,13 @@
 name            = "resume"
 compatibility_date = "2025-04-01"
 
-# Serve all static files from the ./public directory
-[assets]
-directory      = "./public"
-not_found_handling = "404-page"   # serves public/404.html if you create one
-
 routes = [
   { pattern = "resume.loicj.org", custom_domain = true }
 ]
+
+[assets]
+directory      = "./public"
+not_found_handling = "404-page"
 
 # [vars]
 # MY_VAR = "value"
