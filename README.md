@@ -1,103 +1,103 @@
-# CV en ligne — Guide de déploiement Cloudflare
+# Online Resume — Cloudflare Deployment Guide
 
-## Structure du projet
+## Project structure
 
 ```
 cv/
 ├── public/
-│   ├── index.html     ← CV complet (HTML + CSS + JS en un seul fichier)
-│   ├── _headers       ← En-têtes de sécurité (Cloudflare Pages)
-│   └── photo.jpg      ← ← Ajoute ta photo ici
-└── wrangler.toml      ← Config Cloudflare Workers
+│   ├── index.html     ← Full resume (HTML + CSS + JS in a single file)
+│   ├── _headers       ← Security headers (Cloudflare Pages)
+│   └── photo.jpg      ← Add your photo here
+└── wrangler.toml      ← Cloudflare Workers config
 ```
 
 ---
 
-## 1. Personnaliser le contenu
+## 1. Customize the content
 
-Ouvre `public/index.html` et remplace tous les `[brackets]` :
+Open `public/index.html` and replace all `[brackets]`:
 
-| Placeholder           | À remplacer par                          |
+| Placeholder           | Replace with                             |
 |-----------------------|------------------------------------------|
-| `[LastName]`          | Ton nom de famille                       |
-| `[your@email.com]`    | Ton adresse email                        |
-| `[username]`          | Ton pseudo GitHub                        |
-| `[profile]`           | Ton profil LinkedIn                      |
-| `[your-domain.com]`   | Ton domaine Cloudflare                   |
-| `[Company Name]`      | Tes entreprises (×4 langues)             |
-| `[Location]`          | Tes localisations                        |
-| `[N]`                 | Nombre d'ingénieurs managés              |
-| `[Year]` / `[Degree]` | Tes diplômes et certifications           |
+| `[LastName]`          | Your last name                           |
+| `[your@email.com]`    | Your email address                       |
+| `[username]`          | Your GitHub username                     |
+| `[profile]`           | Your LinkedIn profile                    |
+| `[your-domain.com]`   | Your Cloudflare domain                   |
+| `[Company Name]`      | Your companies (×4 languages)            |
+| `[Location]`          | Your locations                           |
+| `[N]`                 | Number of engineers managed              |
+| `[Year]` / `[Degree]` | Your degrees and certifications          |
 
-**Photo de profil :**
-1. Ajoute `photo.jpg` dans `public/`
-2. Dans `index.html`, remplace `<div class="avatar-placeholder">L</div>` par :
+**Profile photo:**
+1. Add `photo.jpg` to `public/`
+2. In `index.html`, replace `<div class="avatar-placeholder">L</div>` with:
    ```html
-   <img src="photo.jpg" alt="Ton Nom">
+   <img src="photo.jpg" alt="Your Name">
    ```
 
 ---
 
-## 2. Déployer sur Cloudflare Workers (recommandé en 2025)
+## 2. Deploy to Cloudflare Workers (recommended in 2025)
 
 ```bash
-# 1. Installer Wrangler (CLI Cloudflare)
+# 1. Install Wrangler (Cloudflare CLI)
 npm install -g wrangler
 
-# 2. Se connecter à Cloudflare
+# 2. Log in to Cloudflare
 npx wrangler login
 
-# 3. Déployer (depuis le dossier cv/)
+# 3. Deploy (from the cv/ folder)
 npx wrangler deploy
 
-# → URL de preview immédiate : https://my-cv.[account].workers.dev
+# → Immediate preview URL: https://my-cv.[account].workers.dev
 ```
 
 ---
 
-## 3. Connecter ton domaine
+## 3. Connect your domain
 
-Dans le **dashboard Cloudflare** :
-1. Workers & Pages → ton worker → Settings → Domains & Routes
-2. Ajoute ton domaine custom : `cv.ton-domaine.com` ou `ton-domaine.com`
-3. DNS se configure automatiquement si le domaine est déjà chez Cloudflare
+In the **Cloudflare dashboard**:
+1. Workers & Pages → your worker → Settings → Domains & Routes
+2. Add your custom domain: `cv.your-domain.com` or `your-domain.com`
+3. DNS is configured automatically if the domain is already on Cloudflare
 
 ---
 
-## 4. Déploiement automatique via Git (optionnel)
+## 4. Automatic deployment via Git (optional)
 
 ```bash
-# Initialiser un repo git
+# Initialize a git repo
 git init && git add . && git commit -m "init cv"
 
-# Pousser sur GitHub
+# Push to GitHub
 gh repo create my-cv --public --push
 
-# Dans Cloudflare dashboard :
+# In the Cloudflare dashboard:
 # Workers & Pages → Create → Pages → Connect to Git → my-cv
-# Build command : (laisser vide)
-# Output directory : public
+# Build command: (leave empty)
+# Output directory: public
 ```
-→ Chaque `git push` déclenche un redéploiement automatique.
+→ Every `git push` triggers an automatic redeployment.
 
 ---
 
-## 5. Exporter en PDF
+## 5. Export to PDF
 
-Ouvre le CV dans Chrome/Edge :
-1. `Ctrl+P` (ou `Cmd+P` sur Mac)
-2. Destination : **Enregistrer en PDF**
-3. Taille : A4
-4. Marges : Minimum
-5. ✅ Graphiques en arrière-plan
+Open the resume in Chrome/Edge:
+1. `Ctrl+P` (or `Cmd+P` on Mac)
+2. Destination: **Save as PDF**
+3. Paper size: A4
+4. Margins: Minimum
+5. ✅ Background graphics
 
-Le CSS `@media print` est déjà configuré pour un rendu propre.
+The `@media print` CSS is already configured for clean rendering.
 
 ---
 
-## 6. Ajouter Google Analytics (optionnel)
+## 6. Add Google Analytics (optional)
 
-Dans `<head>` de `index.html`, après le titre :
+In the `<head>` of `index.html`, after the title:
 ```html
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
