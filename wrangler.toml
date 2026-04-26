@@ -1,7 +1,7 @@
 # wrangler.toml — Cloudflare Workers static site config
 # Docs: https://developers.cloudflare.com/workers/configuration/
 
-name            = "my-cv"
+name            = "resume"
 compatibility_date = "2025-04-01"
 
 # Serve all static files from the ./public directory
